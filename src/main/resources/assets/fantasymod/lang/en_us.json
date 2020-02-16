@@ -1,0 +1,12 @@
+{
+	"item.fantasymod.rainbow_ingot": "Rainbow ingot",
+	"item.fantasymod.unicorn_entity_egg": "Unicorn Entity Egg",
+	
+	"itemGroup.fantasymod": "FantasyMod Group",
+	
+	"block.fantasymod.rainbow_ore": "Rainbow Ore",
+	"block.fantasymod.rainbow_block": "Rainbow Block",
+	"block.fantasymod.infuser": "Infuser",
+	
+	"entity.fantasymod.unicorn_entity": "Unicorn Entity"
+}

@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+	    {
+	      "item": "fantasymod:rainbow_block"
+	    }
+	],
+	"result": {
+		"item": "fantasymod:rainbow_ingot",
+		"count": 9
+	}
+}

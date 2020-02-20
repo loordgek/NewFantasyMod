@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" s ",
+		" # ",
+		" # "
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:stick"
+		},
+		"s": {
+			"item": "fantasymod:rainbow_ingot"
+		}
+	},
+	"result": {
+		"item": "fantasymod:rainbow_shovel"
+	}
+}

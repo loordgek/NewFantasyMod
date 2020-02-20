@@ -1,0 +1,6 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "fantasymod:item/rainbow_axe"
+	}
+}

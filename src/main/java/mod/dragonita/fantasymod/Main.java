@@ -9,11 +9,10 @@ import mod.dragonita.fantasymod.init.ModBlocks;
 import mod.dragonita.fantasymod.init.ModEntityTypes;
 import mod.dragonita.fantasymod.init.ModItems;
 import mod.dragonita.fantasymod.init.ModTileEntityTypes;
-import mod.dragonita.fantasymod.util.GenerationUtil;
+import mod.dragonita.fantasymod.world.gen.FantasyOreGen;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,6 +20,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
@@ -59,7 +59,6 @@ public final class Main
 	public void setup(final FMLCommonSetupEvent event)
 	{
         LOGGER.info("HELLO FROM PREINIT");
-		GenerationUtil.generateOre(FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 3, 1, 0, 0, 100);
 	}
 	
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -85,6 +84,11 @@ public final class Main
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+    
+    @SubscribeEvent
+    public static void loadCompleteEvent(FMLLoadCompleteEvent event) {
+    	FantasyOreGen.generateOre();
     }
     
 	public static void registerEntityWorldSpawn(EntityType<?> entity, Biome... biomes)

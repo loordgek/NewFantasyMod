@@ -11,12 +11,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class UnicornEntityRender extends MobRenderer<UnicornEntity, ModelUnicorn>
+public class UnicornEntityRender extends MobRenderer<UnicornEntity, ModelUnicorn<UnicornEntity>>
 {	
 	private static final ResourceLocation UNICORN = new ResourceLocation(Main.MODID, "textures/entity/unicorn/wild_boar.png");
 
 	public UnicornEntityRender(final EntityRendererManager manager) {
-		super(manager, new ModelUnicorn(), 0.7F);
+		super(manager, new ModelUnicorn<UnicornEntity>(), 0.7F);
 		this.addLayer(new UnicornSaddleLayer(this));
 	}
 

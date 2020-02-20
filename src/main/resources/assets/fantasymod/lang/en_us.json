@@ -1,5 +1,12 @@
 {
 	"item.fantasymod.rainbow_ingot": "Rainbow ingot",
+	
+	"item.fantasymod.rainbow_sword": "Rainbow sword",
+	"item.fantasymod.rainbow_pickaxe": "Rainbow pickaxe",
+	"item.fantasymod.rainbow_shovel": "Rainbow shovel",
+	"item.fantasymod.rainbow_axe": "Rainbow axe",
+	"item.fantasymod.rainbow_hoe": "Rainbow hoe",
+	
 	"item.fantasymod.unicorn_entity_egg": "Unicorn Entity Egg",
 	
 	"itemGroup.fantasymod": "FantasyMod Group",

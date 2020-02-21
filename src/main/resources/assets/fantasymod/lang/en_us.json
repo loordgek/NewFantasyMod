@@ -2,11 +2,22 @@
 	"item.fantasymod.rainbow_ingot": "Rainbow ingot",
 	"item.fantasymod.rainbow_stick": "Rainbow stick",
 	
+	"item.fantasymod.rainbow_helmet": "Rainbow Helmet",
+	"item.fantasymod.rainbow_chestplate": "Rainbow Chestplate",
+	"item.fantasymod.rainbow_leggings": "Rainbow Leggings",
+	"item.fantasymod.rainbow_boots": "Rainbow Boots",
+	
 	"item.fantasymod.rainbow_sword": "Rainbow sword",
 	"item.fantasymod.rainbow_pickaxe": "Rainbow pickaxe",
 	"item.fantasymod.rainbow_shovel": "Rainbow shovel",
 	"item.fantasymod.rainbow_axe": "Rainbow axe",
 	"item.fantasymod.rainbow_hoe": "Rainbow hoe",
+	
+	"item.fantasymod.full_rainbow_sword": "Full Rainbow sword",
+	"item.fantasymod.full_rainbow_pickaxe": "Full Rainbow pickaxe",
+	"item.fantasymod.full_rainbow_shovel": "Full Rainbow shovel",
+	"item.fantasymod.full_rainbow_axe": "Full Rainbow axe",
+	"item.fantasymod.full_rainbow_hoe": "Full Rainbow hoe",
 	
 	"item.fantasymod.unicorn_entity_egg": "Unicorn Entity Egg",
 	
@@ -16,5 +27,5 @@
 	"block.fantasymod.rainbow_block": "Rainbow Block",
 	"block.fantasymod.infuser": "Infuser",
 	
-	"entity.fantasymod.unicorn_entity": "Unicorn Entity"
+	"entity.fantasymod.unicorn_entity": "Unicorn"
 }

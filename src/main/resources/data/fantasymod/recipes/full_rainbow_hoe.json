@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ss ",
+		" # ",
+		" # "
+	],
+	"key": {
+		"#": {
+			"item": "fantasymod:rainbow_stick"
+		},
+		"s": {
+			"item": "fantasymod:rainbow_ingot"
+		}
+	},
+	"result": {
+		"item": "fantasymod:full_rainbow_hoe"
+	}
+}

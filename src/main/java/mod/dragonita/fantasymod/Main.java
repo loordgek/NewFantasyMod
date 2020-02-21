@@ -10,12 +10,10 @@ import mod.dragonita.fantasymod.init.ModEntityTypes;
 import mod.dragonita.fantasymod.init.ModItems;
 import mod.dragonita.fantasymod.init.ModTileEntityTypes;
 import mod.dragonita.fantasymod.world.gen.FantasyOreGen;
-import net.minecraft.entity.EntityType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,14 +24,16 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+@SuppressWarnings("deprecation")
 @Mod(Main.MODID)
-public final class Main
+public final class Main implements DeferredWorkQueue.CheckedRunnable
 {
 	public static final String MODID = "fantasymod";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
-			
+	
 	public Main()
 	{
+		//DeferredWorkQueue.
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -55,10 +55,19 @@ public final class Main
 		ModEntityTypes.ENTITY_TYPES.register(modEventBus);
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 	}
+	/*
+	@SuppressWarnings("deprecation")
+	public void WorkQueue(final DeferredWorkQueue event) {
+		FantasyOreGen.generateOre();
+    	LOGGER.info("All Ores are loaded");
+	}
+	*/
 	
 	public void setup(final FMLCommonSetupEvent event)
 	{
-        LOGGER.info("HELLO FROM PREINIT");
+    	//FantasyOreGen.generateOre();
+    	//LOGGER.info("All Ores are loaded");
+        //LOGGER.info("HELLO FROM PREINIT");
 	}
 	
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -88,9 +97,10 @@ public final class Main
     
     @SubscribeEvent
     public static void loadCompleteEvent(FMLLoadCompleteEvent event) {
-    	FantasyOreGen.generateOre();
+    	//FantasyOreGen.generateOre();
+    	//LOGGER.info("All Ores are loaded");
     }
-    
+    /*
 	public static void registerEntityWorldSpawn(EntityType<?> entity, Biome... biomes)
 	{
 		for(Biome biome : biomes)
@@ -100,5 +110,11 @@ public final class Main
 				biome.getSpawns(entity.getClassification()).add(new SpawnListEntry(entity, 20, 1, 10));
 			}
 		}
+	}
+     */
+	@Override
+	public void run() throws Exception {
+		FantasyOreGen.generateOre();
+    	LOGGER.info("All Ores are loaded");
 	}	
 }

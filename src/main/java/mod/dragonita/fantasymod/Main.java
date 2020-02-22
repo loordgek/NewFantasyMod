@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.dragonita.fantasymod.init.ModBlocks;
+import mod.dragonita.fantasymod.init.ModDimensions;
 import mod.dragonita.fantasymod.init.ModEntityTypes;
 import mod.dragonita.fantasymod.init.ModItems;
 import mod.dragonita.fantasymod.init.ModTileEntityTypes;
@@ -112,8 +113,10 @@ public final class Main implements DeferredWorkQueue.CheckedRunnable
 		}
 	}
      */
+    
 	@Override
 	public void run() throws Exception {
+		ModDimensions.registerDimensions();
 		FantasyOreGen.generateOre();
     	LOGGER.info("All Ores are loaded");
 	}	

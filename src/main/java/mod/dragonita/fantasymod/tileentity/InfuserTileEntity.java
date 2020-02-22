@@ -10,13 +10,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 
 public class InfuserTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider
-{
+{		
 	public InfuserTileEntity() {
 		super(ModTileEntityTypes.INFUSER.get());
 	}
 
 	@Override
-	public Container createMenu(int arg0, PlayerInventory arg1, PlayerEntity arg2) {
+	public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,5 +32,4 @@ public class InfuserTileEntity extends TileEntity implements ITickableTileEntity
 		// TODO Auto-generated method stub
 		
 	}
-
 }

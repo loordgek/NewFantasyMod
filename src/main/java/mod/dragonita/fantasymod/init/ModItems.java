@@ -7,18 +7,23 @@ import mod.dragonita.fantasymod.customthings.UnicornSpawnEgg;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.Food;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public final class ModItems
-{
+{	
 	public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Main.MODID);
+	
+	public static final RegistryObject<Item> RAINBOW_APPLE = ITEMS.register("rainbow_apple",() -> new Item(new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP).food(new Food.Builder().hunger(6).saturation(10.0F).effect(new EffectInstance(Effects.ABSORPTION, 360000, 5), 1).effect(new EffectInstance(Effects.REGENERATION, 360000, 5), 1).effect(new EffectInstance(Effects.HEALTH_BOOST, 360000, 5), 1).effect(new EffectInstance(Effects.INSTANT_HEALTH, 360000, 5), 1).effect(new EffectInstance(Effects.JUMP_BOOST, 360000, 5), 1).effect(new EffectInstance(Effects.SPEED, 360000, 5), 1).effect(new EffectInstance(Effects.STRENGTH, 360000, 5), 1).build())));
 	
 	public static final RegistryObject<Item> RAINBOW_INGOT = ITEMS.register("rainbow_ingot",() -> new Item(new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));
 	public static final RegistryObject<Item> RAINBOW_STICK = ITEMS.register("rainbow_stick",() -> new Item(new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));

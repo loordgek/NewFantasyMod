@@ -5,9 +5,10 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import mod.dragonita.fantasymod.entities.UnicornEntity;
 import mod.dragonita.fantasymod.util.PCEntityModel;
 import mod.dragonita.fantasymod.util.PCRenderModel;
+import net.minecraft.entity.ai.goal.PanicGoal;
 
 /**
- * ModelUnicornTabula - Either Mojang or a mod author
+ * ModelUnicornTabula - DragonITA
  * Created using Tabula 7.1.0
  */
 public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
@@ -72,9 +73,8 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
         this.RightEar2.addBox(-2.45F, -12.0F, 4.0F, 2, 3, 1, 0.0F);
         this.setRotateAngle(RightEar2, 0.0F, 0.13962634015954636F, 0.20943951023931953F);
         this.NeckHair = new PCRenderModel(this, 59, 0);
-        this.NeckHair.setRotationPoint(0.0F, 4.0F, -10.0F);
-        this.NeckHair.addBox(-1.0F, -11.5F, 5.0F, 2, 16, 4, 0.0F);
-        this.setRotateAngle(NeckHair, 0.5235987755982988F, 0.0F, 0.0F);
+        this.NeckHair.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.NeckHair.addBox(-1.0F, -11.5F, 5.0F, 2, 16, 4, 0.0F);        this.setRotateAngle(NeckHair, 0.5235987755982988F, 0.0F, 0.0F);
         this.Tail1 = new PCRenderModel(this, 44, 0);
         this.Tail1.setRotationPoint(0.0F, -8.0F, 5.0F);
         this.Tail1.addBox(-1.0F, -1.0F, 0.0F, 2, 2, 3, 0.0F);
@@ -99,6 +99,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
         this.Neck.setRotationPoint(0.0F, -6.5F, -19.0F);
         this.Neck.addBox(-2.05F, -9.8F, -2.0F, 4, 14, 8, 0.0F);
         this.setRotateAngle(Neck, 0.5235987755982988F, 0.0F, 0.0F);
+        this.Neck.addChild(this.NeckHair);
         this.FrontUpperSaddlePart = new PCRenderModel(this, 106, 9);
         this.FrontUpperSaddlePart.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.FrontUpperSaddlePart.addBox(-1.5F, -1.0F, -3.0F, 3, 1, 2, 0.0F);
@@ -170,9 +171,9 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
         this.BackUpperSaddlePart.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.BackUpperSaddlePart.addBox(-4.0F, -1.0F, 3.0F, 8, 1, 2, 0.0F);
         this.LeftEar1 = new PCRenderModel(this, 10, 80);
-        this.LeftEar1.setRotationPoint(0.0F, -7.0F, -19.0F);
+        this.LeftEar1.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.LeftEar1.addBox(-2.0F, -16.0F, 4.0F, 2, 7, 1, 0.0F);
-        this.setRotateAngle(LeftEar1, 0.5235987755982988F, 0.0F, 0.2617993877991494F);
+        this.setRotateAngle(LeftEar1, 0.0F, 0.0F, 0.2617993877991494F);
         this.Corn3 = new PCRenderModel(this, 30, 70);
         this.Corn3.setRotationPoint(0.5F, -2.0F, 0.5F);
         this.Corn3.addBox(0.0F, 0.0F, 0.0F, 1, 1, 1, 0.0F);
@@ -184,9 +185,9 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
         this.FrontRightLeg3.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.FrontRightLeg3.addBox(-1.6F, 5.1F, -2.1F, 4, 3, 4, 0.0F);
         this.RightEar1 = new PCRenderModel(this, 0, 12);
-        this.RightEar1.setRotationPoint(0.0F, -7.0F, -19.0F);
+        this.RightEar1.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.RightEar1.addBox(0.0F, -16.0F, 4.0F, 2, 7, 1, 0.0F);
-        this.setRotateAngle(RightEar1, 0.5235987755982988F, 0.0F, -0.2617993877991494F);
+        this.setRotateAngle(RightEar1, 0.0F, 0.0F, -0.2617993877991494F);
         this.FrontLeftLeg2 = new PCRenderModel(this, 44, 41);
         this.FrontLeftLeg2.setRotationPoint(0.0F, 7.0F, 0.0F);
         this.FrontLeftLeg2.addBox(-1.9F, 0.0F, -1.6F, 3, 5, 3, 0.0F);
@@ -225,16 +226,15 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
         this.FrontRightLeg1.addChild(this.FrontRightLeg2);
         this.FrontLeftLeg2.addChild(this.FrontLeftLeg3);
         this.CenterSaddle.addChild(this.BackUpperSaddlePart);
-        this.Body.addChild(this.LeftEar1);
         this.Corn2.addChild(this.Corn3);
         this.Body.addChild(this.LeftSaddleMouthButton);
         this.FrontRightLeg2.addChild(this.FrontRightLeg3);
-        this.Body.addChild(this.RightEar1);
         this.FrontLeftLeg1.addChild(this.FrontLeftLeg2);
         this.RightSaddleLine.addChild(this.RightSaddlePart);
-        
+        this.Neck.addChild(this.Head);
+        this.Head.addChild(this.RightEar1);
+        this.Head.addChild(this.LeftEar1);
         bodyParts = new PCRenderModel[] {Body, NeckHair, BackLeftLeg1, BackRightLeg1, FrontRightLeg1, FrontLeftLeg1, LeftChest, RightChest, Tail1, Head, RightEar1, LeftEar1, Neck, LeftMouthSaddleLine, RightMouthSaddleLine, CenterSaddle, RightSaddleMouthButton, LeftSaddleMouthButton, BackLeftLeg2, BackLeftLeg3, BackRightLeg2, BackRightLeg3, FrontRightLeg2, FrontRightLeg3, FrontLeftLeg2, FrontLeftLeg3, Tail2, Tail3, UpperMouth, UnderMouth, Corn1, Corn2, Corn3, RightEar2, LeftEar2, BackUpperSaddlePart, FrontUpperSaddlePart, LeftSaddleLine, RightSaddleLine, LeftSaddlePart, RightSaddlePart};
-    
         saveAsDefaultPose();
     }
 
@@ -251,7 +251,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     public void render(MatrixStack arg0, IVertexBuilder arg1, int arg2, int arg3, float arg4, float arg5, float arg6,
     		float arg7) {
     	this.Body.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.NeckHair.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    	//this.NeckHair.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
     	/*
     	this.Neck.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
     	this.Corn1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
@@ -281,7 +281,10 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     public void setRotationAngles(UnicornEntity entity, float limbSwing, float limbSwingAmount, float ageInTick, float netHeadYaw, float headPitch) {
     	limbSwing = entity.ticksExisted;
 		limbSwingAmount = 1;
-		
+		/*
+		PanicGoal panicGoal = null;
+		panicGoal.
+		*/
 		float globalHeight = 1;
 		float globalSpeed = 1;
 		float globalDegree = 1;
@@ -326,27 +329,31 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
        		swing(FrontRightLeg1, 0.1F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
     		swing(FrontRightLeg2, 0.1F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
     		
-    	}else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
-    		loadDefaultPose();
-    		//entity.goalSelector.getRunningGoals().findFirst().get();
-    		//Body
-    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
+    }else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
+    			if(entity.goalSelector.getRunningGoals().findFirst() != null) {
+    				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null || entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() == PanicGoal.class) {
+    					loadDefaultPose();
 
-    		//BackLeftLeg
-    		swing(BackLeftLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(BackLeftLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    	
-    		//BackRightLeg
-       		swing(BackRightLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(BackRightLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		
-    		//FrontLeftLeg
-    		swing(FrontLeftLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(FrontLeftLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    	
-    		//FrontRightLeg
-       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    		//Body
+    		    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
+
+    		    		//BackLeftLeg
+    		    		swing(BackLeftLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    		swing(BackLeftLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    	
+    		    		//BackRightLeg
+    		       		swing(BackRightLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    		swing(BackRightLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    		
+    		    		//FrontLeftLeg
+    		    		swing(FrontLeftLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    		swing(FrontLeftLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    	
+    		    		//FrontRightLeg
+    		       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    		    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    				}
+    			}
     	}else{
     		/*
     		loadDefaultPose();

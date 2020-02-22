@@ -15,7 +15,7 @@ public class FantasyOreGen {
 		for(Biome biome : ForgeRegistries.BIOMES) {
 			//if(biome == Biomes.PLAINS) {
 				ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE
-						.configure(new CountRangeConfig(1000, 0, 0, 100));
+						.configure(new CountRangeConfig(20, 5, 5, 25));
 				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
 						.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 10))
 						.withPlacement(customConfig));

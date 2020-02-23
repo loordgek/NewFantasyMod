@@ -9,14 +9,15 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ModDimensions {
+public class ModDimensions implements Runnable {
 	public static final DeferredRegister<ModDimension> DIMENSION = new DeferredRegister<>(ForgeRegistries.MOD_DIMENSIONS, Main.MODID);
 	public static final ResourceLocation GEF = new ResourceLocation(Main.MODID, "fantasydimension");
 	
 	public static final RegistryObject<ModDimension> RAINBOW_MOD_DIMENSION = DIMENSION.register("fantasymoddimension", () -> new FantasyModDimension());
 	
 	@SuppressWarnings("deprecation")
-	public static void registerDimensions() {
+	@Override
+	public void run() {
 		if (!DimensionManager.getRegistry().containsKey(GEF)) {
 			DimensionManager.registerDimension(GEF, RAINBOW_MOD_DIMENSION.get(), null, true);
 		}else {

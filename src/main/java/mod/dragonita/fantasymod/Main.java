@@ -27,14 +27,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @SuppressWarnings("deprecation")
 @Mod(Main.MODID)
-public final class Main implements DeferredWorkQueue.CheckedRunnable
+public final class Main
 {
 	public static final String MODID = "fantasymod";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 	
 	public Main()
 	{
-		//DeferredWorkQueue.
+		DeferredWorkQueue.runLater(FantasyOreGen);
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -56,22 +56,14 @@ public final class Main implements DeferredWorkQueue.CheckedRunnable
 		ModEntityTypes.ENTITY_TYPES.register(modEventBus);
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 	}
-	/*
-	@SuppressWarnings("deprecation")
-	public void WorkQueue(final DeferredWorkQueue event) {
-		FantasyOreGen.generateOre();
-    	LOGGER.info("All Ores are loaded");
-	}
-	*/
 	
-	@Override
-	public void run() throws Exception {
+	/*
+	public void WorkQueue() {
 		ModDimensions.registerDimensions();
 		LOGGER.info("Dimensions are loaded");
 		FantasyOreGen.generateOre();
     	LOGGER.info("Ores are loaded");
-	}	
-
+	}*/
 	
 	public void setup(final FMLCommonSetupEvent event)
 	{

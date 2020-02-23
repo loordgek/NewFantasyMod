@@ -251,30 +251,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     public void render(MatrixStack arg0, IVertexBuilder arg1, int arg2, int arg3, float arg4, float arg5, float arg6,
     		float arg7) {
     	this.Body.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	//this.NeckHair.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	/*
-    	this.Neck.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.Corn1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.Corn2.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.Corn3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackLeftLeg1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackLeftLeg1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackLeftLeg3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackRightLeg1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackRightLeg2.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackRightLeg3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.BackUpperSaddlePart.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.CenterSaddle.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontUpperSaddlePart.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.Head.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontLeftLeg1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontLeftLeg2.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontLeftLeg3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontRightLeg1.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontRightLeg2.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	this.FrontRightLeg3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    	//this.LeftMouthSaddleLine
-    	 */
+
     }
     
     @Override
@@ -331,31 +308,33 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     		
     }else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
     			if(entity.goalSelector.getRunningGoals().findFirst() != null) {
-    				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null || entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() == PanicGoal.class) {
-    					loadDefaultPose();
-
-    		    		//Body
-    		    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
-
-    		    		//BackLeftLeg
-    		    		swing(BackLeftLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    		swing(BackLeftLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    	
-    		    		//BackRightLeg
-    		       		swing(BackRightLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    		swing(BackRightLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    		
-    		    		//FrontLeftLeg
-    		    		swing(FrontLeftLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    		swing(FrontLeftLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    	
-    		    		//FrontRightLeg
-    		       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal() != null) {
+    					if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() == PanicGoal.class) { //entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null 
+	    					loadDefaultPose();
+	
+	    		    		//Body
+	    		    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
+	
+	    		    		//BackLeftLeg
+	    		    		swing(BackLeftLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    		swing(BackLeftLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    	
+	    		    		//BackRightLeg
+	    		       		swing(BackRightLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    		swing(BackRightLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    		
+	    		    		//FrontLeftLeg
+	    		    		swing(FrontLeftLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    		swing(FrontLeftLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    	
+	    		    		//FrontRightLeg
+	    		       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+	    		    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    					}
     				}
     			}
-    	}else{
-    		/*
+    	}/*else{
+    		
     		loadDefaultPose();
     		
        		//Body
@@ -373,7 +352,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     		//FrontRightLeg
     		bounce(FrontRightLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
     	*/
-    		loadDefaultPose();
+    		/*loadDefaultPose();
     		//entity.goalSelector.getRunningGoals().findFirst().get();
     		//Body
     		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
@@ -393,7 +372,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     		//FrontRightLeg
        		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
     		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-
-    	}
+    		
+    	}*/
     }
 }

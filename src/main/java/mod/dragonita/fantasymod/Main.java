@@ -64,6 +64,15 @@ public final class Main implements DeferredWorkQueue.CheckedRunnable
 	}
 	*/
 	
+	@Override
+	public void run() throws Exception {
+		ModDimensions.registerDimensions();
+		LOGGER.info("Dimensions are loaded");
+		FantasyOreGen.generateOre();
+    	LOGGER.info("Ores are loaded");
+	}	
+
+	
 	public void setup(final FMLCommonSetupEvent event)
 	{
     	//FantasyOreGen.generateOre();
@@ -113,12 +122,4 @@ public final class Main implements DeferredWorkQueue.CheckedRunnable
 		}
 	}
      */
-    
-	@Override
-	public void run() throws Exception {
-		ModDimensions.registerDimensions();
-		LOGGER.info("Dimensions are loaded");
-		FantasyOreGen.generateOre();
-    	LOGGER.info("Ores are loaded");
-	}	
 }

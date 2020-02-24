@@ -306,7 +306,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     }else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
     			if(entity.goalSelector.getRunningGoals().findFirst() != null) {
     				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal() != null) {
-    					if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() == PanicGoal.class) { //entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null 
+    					if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null) { //entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null 
 	    					loadDefaultPose();
 	
 	    		    		//Body

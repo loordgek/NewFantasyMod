@@ -10,9 +10,8 @@ import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class FantasyOreGen  implements Runnable{
-	@Override
-	public void run() {
+public class FantasyOreGen {
+		public void generateOre() {
 		for(Biome biome : ForgeRegistries.BIOMES) {
 			//if(biome == Biomes.PLAINS) {
 				ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE

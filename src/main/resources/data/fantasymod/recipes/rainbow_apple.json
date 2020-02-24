@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"sss",
+		"s#s",
+		"sss"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:golden_apple"
+		},
+		"s": {
+			"item": "fantasymod:rainbow_ingot"
+		}
+	},
+	"result": {
+		"item": "fantasymod:rainbow_apple"
+	}
+}

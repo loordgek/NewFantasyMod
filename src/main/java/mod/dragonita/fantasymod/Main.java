@@ -6,11 +6,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.dragonita.fantasymod.init.ModBlocks;
-import mod.dragonita.fantasymod.init.ModDimensions;
 import mod.dragonita.fantasymod.init.ModEntityTypes;
 import mod.dragonita.fantasymod.init.ModItems;
 import mod.dragonita.fantasymod.init.ModTileEntityTypes;
-import mod.dragonita.fantasymod.world.gen.FantasyOreGen;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.placement.ConfiguredPlacement;
+import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,6 +29,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @SuppressWarnings("deprecation")
 @Mod(Main.MODID)
@@ -34,7 +40,20 @@ public final class Main
 	
 	public Main()
 	{
-		DeferredWorkQueue.runLater(FantasyOreGen);
+		DeferredWorkQueue.runLater(new Runnable() {
+			@Override
+			public void run() {
+				for(Biome biome : ForgeRegistries.BIOMES) {
+					//if(biome == Biomes.PLAINS) {
+						ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE
+								.configure(new CountRangeConfig(20, 5, 5, 25));
+						biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
+								.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 10))
+								.withPlacement(customConfig));
+					//}
+					}
+				}
+		});
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading

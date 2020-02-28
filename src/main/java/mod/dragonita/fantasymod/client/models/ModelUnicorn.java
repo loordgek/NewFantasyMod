@@ -262,7 +262,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
 		float globalHeight = 1;
 		float globalSpeed = 1;
 		float globalDegree = 1;
-		
+
 		this.Neck.rotateAngleY = (netHeadYaw*((float)Math.PI / 180)) / 2;
 		this.Head.rotateAngleZ = (netHeadYaw*((float)Math.PI / 180)) / 4;
 		this.Head.rotateAngleY = (netHeadYaw*((float)Math.PI / 180)) / 4;
@@ -304,9 +304,9 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     		swing(FrontRightLeg2, 0.1F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
     		
     }else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
-    			if(entity.goalSelector.getRunningGoals().findFirst() != null) {
-    				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal() != null) {
-    					if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null) { //entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null 
+    			if(entity.goalSelector.getRunningGoals().findFirst().isPresent() == true) {
+    				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() == PanicGoal.class) {
+    					//if(true) { //entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null  &&  entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null 
 	    					loadDefaultPose();
 	
 	    		    		//Body
@@ -327,49 +327,56 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
 	    		    		//FrontRightLeg
 	    		       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
 	    		    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    					}
-    				}
-    			}
-    	}/*else{
-    		
-    		loadDefaultPose();
-    		
-       		//Body
-    		bounce(Body, -0.2F*globalSpeed, -0.2F*globalHeight, false, limbSwing, limbSwingAmount);
-       		
-    		//BackLeftLeg
-    		bounce(BackLeftLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
-    	
-    		//BackRightLeg
-    		bounce(BackRightLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
-    		
-    		//FrontLeftLeg
-    		bounce(FrontLeftLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
-    	
-    		//FrontRightLeg
-    		bounce(FrontRightLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
-    	*/
-    		/*loadDefaultPose();
-    		//entity.goalSelector.getRunningGoals().findFirst().get();
-    		//Body
-    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
+    					//}
+    				}else{
+    	    		
+    	    		loadDefaultPose();
+    	    		
+    	       		//Body
+    	    		bounce(Body, -0.2F*globalSpeed, -0.2F*globalHeight, false, limbSwing, limbSwingAmount);
+    	       		
+    	    		//BackLeftLeg
+    	    		bounce(BackLeftLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
+    	    	
+    	    		//BackRightLeg
+    	    		bounce(BackRightLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
+    	    		
+    	    		//FrontLeftLeg
+    	    		bounce(FrontLeftLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
+    	    	
+    	    		//FrontRightLeg
+    	    		bounce(FrontRightLeg1, -0.2F*globalSpeed, 0.2F*globalHeight, false, limbSwing, limbSwingAmount);
+    	    		/*
+    	    		loadDefaultPose();
+    	    		//entity.goalSelector.getRunningGoals().findFirst().get();
+    	    		//Body
+    	    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
 
-    		//BackLeftLeg
-    		swing(BackLeftLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(BackLeftLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    	
-    		//BackRightLeg
-       		swing(BackRightLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(BackRightLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		
-    		//FrontLeftLeg
-    		swing(FrontLeftLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(FrontLeftLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    	
-    		//FrontRightLeg
-       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
-    		
-    	}*/
+    	    		//BackLeftLeg
+    	    		swing(BackLeftLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    		swing(BackLeftLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    	
+    	    		//BackRightLeg
+    	       		swing(BackRightLeg1, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    		swing(BackRightLeg2, 0.5F, 0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    		
+    	    		//FrontLeftLeg
+    	    		swing(FrontLeftLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    		swing(FrontLeftLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    	
+    	    		//FrontRightLeg
+    	       		swing(FrontRightLeg1, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    		swing(FrontRightLeg2, 0.5F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
+    	    		*/
+    	    	}
+    		}
+    	}
+    
+    
+    
+    
+
+    
+    
     }
 }

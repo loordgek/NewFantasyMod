@@ -40,20 +40,6 @@ public final class Main
 	
 	public Main()
 	{
-		DeferredWorkQueue.runLater(new Runnable() {
-			@Override
-			public void run() {
-				for(Biome biome : ForgeRegistries.BIOMES) {
-					//if(biome == Biomes.PLAINS) {
-						ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE
-								.configure(new CountRangeConfig(20, 5, 5, 25));
-						biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
-								.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 10))
-								.withPlacement(customConfig));
-					//}
-					}
-				}
-		});
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -62,6 +48,8 @@ public final class Main
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        // Register the CommonSetupEvent method for modloading
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::CommonSetupEvent);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -120,6 +108,24 @@ public final class Main
     public static void loadCompleteEvent(FMLLoadCompleteEvent event) {
     	//FantasyOreGen.generateOre();
     	//LOGGER.info("All Ores are loaded");
+    }
+    
+    @SubscribeEvent
+    public void CommonSetupEvent(FMLCommonSetupEvent event) {
+		DeferredWorkQueue.runLater(new Runnable() {
+			@Override
+			public void run() {
+				for(Biome biome : ForgeRegistries.BIOMES) {
+					//if(biome == Biomes.PLAINS) {
+						ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE
+								.configure(new CountRangeConfig(20, 5, 5, 25));
+						biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
+								.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 10))
+								.withPlacement(customConfig));
+					//}
+					}
+				}
+		});	
     }
     /*
 	public static void registerEntityWorldSpawn(EntityType<?> entity, Biome... biomes)

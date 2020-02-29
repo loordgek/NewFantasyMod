@@ -13,6 +13,5 @@ public final class ModEntityTypes {
 
     public static final RegistryObject<EntityType<UnicornEntity>> UNICORN = ENTITY_TYPES.register("unicorn_entity", () -> EntityType.Builder.create(UnicornEntity::new, EntityClassification.CREATURE)
             .size(1, 1)
-            .setShouldReceiveVelocityUpdates(false)
             .build("unicorn_entity"));
 }

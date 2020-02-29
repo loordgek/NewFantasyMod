@@ -3,6 +3,7 @@ package mod.dragonita.fantasymod.init;
 import mod.dragonita.fantasymod.Main;
 import mod.dragonita.fantasymod.Enum.ModArmorMaterial;
 import mod.dragonita.fantasymod.Enum.ModItemTier;
+import mod.dragonita.fantasymod.customthings.FullRainbowPickAxe;
 import mod.dragonita.fantasymod.customthings.UnicornSpawnEgg;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -35,7 +36,7 @@ public final class ModItems
 
 	
 	public static final RegistryObject<SwordItem> FULL_RAINBOW_SWORD = ITEMS.register("full_rainbow_sword", () -> new SwordItem(ModItemTier.FANTASY, 15, 2, new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));
-	public static final RegistryObject<PickaxeItem> FULL_RAINBOW_PICKAXE = ITEMS.register("full_rainbow_pickaxe", () -> new PickaxeItem(ModItemTier.FANTASY, 12, 3F, new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));
+	public static final RegistryObject<FullRainbowPickAxe> FULL_RAINBOW_PICKAXE = ITEMS.register("full_rainbow_pickaxe", () -> new FullRainbowPickAxe(ModItemTier.FANTASY, 12, 3F, new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));
 	public static final RegistryObject<ShovelItem> FULL_RAINBOW_SHOVEL = ITEMS.register("full_rainbow_shovel", () -> new ShovelItem(ModItemTier.FANTASY, 5, 3, new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));
 	public static final RegistryObject<AxeItem> FULL_RAINBOW_AXE = ITEMS.register("full_rainbow_axe", () -> new AxeItem(ModItemTier.FANTASY, 18, 4.5F, new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));
 	public static final RegistryObject<HoeItem> FULL_RAINBOW_HOE = ITEMS.register("full_rainbow_hoe", () -> new HoeItem(ModItemTier.FANTASY, 2, new Item.Properties().group(ModItemGroups.RAINBOW_MOD_GROUP)));	

@@ -304,11 +304,11 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     		swing(FrontRightLeg2, 0.1F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
     		
     }else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
-    			if(entity.goalSelector.getRunningGoals().findFirst().isPresent() == true) {
-    				if(entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() == PanicGoal.class) {
+    			if(entity.goalSelector.getRunningGoals().filter(goal -> goal.getClass().equals(PanicGoal.class)).findFirst().isPresent() == true) {
+    				if(entity.goalSelector.getRunningGoals().filter(goal -> goal.getClass().equals(PanicGoal.class)).findFirst().get().isRunning() == true) {
     					//if(true) { //entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null  &&  entity.goalSelector.getRunningGoals().findFirst().get().getGoal().getClass() != null 
 	    					loadDefaultPose();
-	
+	    					
 	    		    		//Body
 	    		    		bounce(Body, 0.75F*globalSpeed, 3*globalHeight, false, limbSwing, limbSwingAmount);
 	

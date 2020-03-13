@@ -6,9 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.dragonita.fantasymod.init.ModBlocks;
+import mod.dragonita.fantasymod.init.ModDimensions;
 import mod.dragonita.fantasymod.init.ModEntityTypes;
 import mod.dragonita.fantasymod.init.ModItems;
 import mod.dragonita.fantasymod.init.ModTileEntityTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -37,6 +39,8 @@ public final class Main
 {
 	public static final String MODID = "fantasymod";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
+	public static final ResourceLocation DIMENSION_TYPE = new ResourceLocation(Main.MODID, "rainbow_dimension");
+
 	
 	public Main()
 	{
@@ -48,8 +52,6 @@ public final class Main
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        // Register the CommonSetupEvent method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::CommonSetupEvent);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -62,21 +64,27 @@ public final class Main
 		ModItems.ITEMS.register(modEventBus);
 		ModEntityTypes.ENTITY_TYPES.register(modEventBus);
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
+		ModDimensions.DIMENSION.register(modEventBus);
+		
+		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
-	/*
-	public void WorkQueue() {
-		ModDimensions.registerDimensions();
-		LOGGER.info("Dimensions are loaded");
-		FantasyOreGen.generateOre();
-    	LOGGER.info("Ores are loaded");
-	}*/
 	
 	public void setup(final FMLCommonSetupEvent event)
 	{
-    	//FantasyOreGen.generateOre();
-    	//LOGGER.info("All Ores are loaded");
-        //LOGGER.info("HELLO FROM PREINIT");
+		DeferredWorkQueue.runLater(new Runnable() {
+			@Override
+			public void run() {
+				for(Biome biome : ForgeRegistries.BIOMES) {
+					//if(biome == Biomes.PLAINS) {
+						ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE
+								.configure(new CountRangeConfig(20, 5, 5, 25));
+						biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
+								.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 10))
+								.withPlacement(customConfig));
+					//}
+					}
+				}
+		});	
 	}
 	
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -106,37 +114,5 @@ public final class Main
     
     @SubscribeEvent
     public static void loadCompleteEvent(FMLLoadCompleteEvent event) {
-    	//FantasyOreGen.generateOre();
-    	//LOGGER.info("All Ores are loaded");
     }
-    
-    @SubscribeEvent
-    public void CommonSetupEvent(FMLCommonSetupEvent event) {
-		DeferredWorkQueue.runLater(new Runnable() {
-			@Override
-			public void run() {
-				for(Biome biome : ForgeRegistries.BIOMES) {
-					//if(biome == Biomes.PLAINS) {
-						ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE
-								.configure(new CountRangeConfig(20, 5, 5, 25));
-						biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
-								.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RAINBOW_ORE.get().getDefaultState(), 10))
-								.withPlacement(customConfig));
-					//}
-					}
-				}
-		});	
-    }
-    /*
-	public static void registerEntityWorldSpawn(EntityType<?> entity, Biome... biomes)
-	{
-		for(Biome biome : biomes)
-		{
-			if(biome != null)
-			{
-				biome.getSpawns(entity.getClassification()).add(new SpawnListEntry(entity, 20, 1, 10));
-			}
-		}
-	}
-     */
 }

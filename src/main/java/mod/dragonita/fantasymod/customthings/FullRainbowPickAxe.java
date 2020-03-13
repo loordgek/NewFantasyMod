@@ -6,13 +6,14 @@ import mod.dragonita.fantasymod.util.KeyboardHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 
 public class FullRainbowPickAxe extends PickaxeItem {
@@ -26,14 +27,18 @@ public class FullRainbowPickAxe extends PickaxeItem {
 		return TargetBlock;
 	}
 	
-	private BlockState getBlockState(World worldIn, BlockPos TargetBlockPos) {
-		BlockState TargetBlockState = worldIn.getBlockState(TargetBlockPos);
-		return TargetBlockState;
-	}
-	
-	@SuppressWarnings("deprecation")
-	private ItemStack getItemStack(BlockState Block) {
-		return Item.getItemFromBlock(Block.getBlock()).getDefaultInstance();
+	@SuppressWarnings("unused")
+	private boolean tryHarvestBlockCustom(BlockPos pos, World World, ServerPlayerEntity Player) {
+		World world = World;
+		GameType gameType = GameType.NOT_SET;
+		ServerPlayerEntity player = Player;
+	    //BlockState blockstate = world.getBlockState(pos);
+	    int exp = net.minecraftforge.common.ForgeHooks.onBlockBreakEvent(world, gameType, player, pos);
+	    if (exp == -1) {
+	       return false;
+	    } else {
+	    	return true;
+	    }
 	}
 	
 	@Override
@@ -45,7 +50,10 @@ public class FullRainbowPickAxe extends PickaxeItem {
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
-		
+	
+	//onBlock
+	
+	@SuppressWarnings("unused")
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos,
 			LivingEntity entityLiving) {
@@ -59,6 +67,10 @@ public class FullRainbowPickAxe extends PickaxeItem {
 		BlockPos UpperMiddleBlock = getBlockPos(pos, 0, 0, 1);
 		BlockPos DownMiddleBlock = getBlockPos(pos, 0, 0, -1);
 		
+		ServerPlayerEntity ServerPlayer;
+		//entityLiving.Player
+		
+		/*
 		super.onBlockDestroyed(getItemStack(getBlockState(worldIn, MiddleBlock)), worldIn, getBlockState(worldIn, MiddleBlock), MiddleBlock, entityLiving);
 		super.onBlockDestroyed(getItemStack(getBlockState(worldIn, MiddleLeftBlock)), worldIn, getBlockState(worldIn, MiddleLeftBlock), MiddleLeftBlock, entityLiving);
 		super.onBlockDestroyed(getItemStack(getBlockState(worldIn, MiddleRightBlock)), worldIn, getBlockState(worldIn, MiddleRightBlock), MiddleRightBlock, entityLiving);
@@ -68,6 +80,8 @@ public class FullRainbowPickAxe extends PickaxeItem {
 		super.onBlockDestroyed(getItemStack(getBlockState(worldIn, MiddleDownRightBlock)), worldIn, getBlockState(worldIn, MiddleDownRightBlock), MiddleDownRightBlock, entityLiving);
 		super.onBlockDestroyed(getItemStack(getBlockState(worldIn, UpperMiddleBlock)), worldIn, getBlockState(worldIn, UpperMiddleBlock), UpperMiddleBlock, entityLiving);
 		super.onBlockDestroyed(getItemStack(getBlockState(worldIn, DownMiddleBlock)), worldIn, getBlockState(worldIn, DownMiddleBlock), DownMiddleBlock, entityLiving);
+		*/
+		//tryHarvestBlockCustom(pos, worldIn, ServerPlayer);
 		return super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
 	}
 }

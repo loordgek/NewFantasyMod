@@ -11,6 +11,5 @@ public class FantasyModDimension extends ModDimension {
 	@Override
 	public BiFunction<World, DimensionType, ? extends Dimension> getFactory() {
 		return FantasyDimension::new;
-		//return null;
 	}
 }

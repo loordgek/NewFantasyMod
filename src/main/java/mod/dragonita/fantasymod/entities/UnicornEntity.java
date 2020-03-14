@@ -74,7 +74,7 @@ public class UnicornEntity extends HorseEntity{
 	 * Can be used to set additional on the child entity based on the parent.
 	 *
 	 * @param parent The entity that made this child
-	 * @return A new WildBoar
+	 * @return A new Unicorn
 	 * @see AbstractHorseEntity#setOffspringAttributes(AgeableEntity, AbstractHorseEntity)
 	 */
 	@Override

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import mod.dragonita.fantasymod.customthings.ModidPacketHandler;
 import mod.dragonita.fantasymod.init.ModBlocks;
 import mod.dragonita.fantasymod.init.ModDimensions;
 import mod.dragonita.fantasymod.init.ModEntityTypes;
@@ -71,6 +72,7 @@ public final class Main
 	
 	public void setup(final FMLCommonSetupEvent event)
 	{
+		ModidPacketHandler.INSTANCE.registerMessage(505156459, ModidPacketHandler.class, ModidPacketHandler::encode, ModidPacketHandler::new, ModidPacketHandler::handle);
 		DeferredWorkQueue.runLater(new Runnable() {
 			@Override
 			public void run() {

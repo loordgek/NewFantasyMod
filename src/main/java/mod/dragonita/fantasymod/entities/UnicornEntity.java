@@ -1,15 +1,9 @@
 package mod.dragonita.fantasymod.entities;
 
-import java.util.Optional;
-
-import org.apache.logging.log4j.Logger;
-
-import mod.dragonita.fantasymod.Main;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.PrioritizedGoal;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.network.IPacket;
@@ -19,8 +13,7 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class UnicornEntity extends HorseEntity{
-	private UnicornEntity entity = this;
-	private static Logger LOGGER = Main.LOGGER;
+	//private static Logger LOGGER = Main.LOGGER;
 	
 	public UnicornEntity(final EntityType<? extends UnicornEntity> entityType, final World world) {
 		super(entityType, world);
@@ -38,35 +31,14 @@ public class UnicornEntity extends HorseEntity{
 	}
 	
 	/*
-	 * This Function return true if the 
-	 * running Goal was the same as in the parameters
+	 * This Function return true if the running Goal was the same as in the parameters
+	 * 
+	 * @param The Class of the Goal we want to compare
 	 * @return true if it was the same, else false
+	 * @see The goals
 	 */
 	public boolean CompareGoal(Class<PanicGoal> TargetGoal) {
-		boolean ReturnValue = false;
-		if(entity.goalSelector.getRunningGoals().findFirst() != null) {
-			Optional<PrioritizedGoal> FindedGoalList = entity.goalSelector.getRunningGoals().findFirst();
-			LOGGER.info("First Controll was passed: " + FindedGoalList.toString());
-			
-			if(FindedGoalList.filter(goal -> goal.getGoal().getClass().equals(TargetGoal)).isPresent() == true) {
-				//Optional<PrioritizedGoal> FindedGoal = FindedGoalList.filter(goal -> goal.getGoal().getClass().equals(TargetGoal.getClass()));
-				LOGGER.info("Second Controll was passed");
-				
-				//if(FindedGoal.get().getGoal() == TargetGoal) {
-					LOGGER.info("Entity has a Goal");
-					ReturnValue = true;
-					return ReturnValue;
-				//}
-			} else {
-				LOGGER.info("Nope, here was a nil on the 2. controll");
-				LOGGER.info("TestValues: " + FindedGoalList.toString());
-				//LOGGER.info(" ");
-				return ReturnValue;
-			}
-		} else {
-			LOGGER.info("Nope, here was a nil on the 1. controll");
-			return ReturnValue;
-		}
+		return this.goalSelector.getRunningGoals().anyMatch(goal -> goal.getGoal().getClass() == TargetGoal);
 	}
 	
 	/**
@@ -80,7 +52,7 @@ public class UnicornEntity extends HorseEntity{
 	@Override
 	public UnicornEntity createChild(final AgeableEntity parent) {
 		// Use getType to support overrides in subclasses
-		return (UnicornEntity) getType().create(this.world);
+		return (UnicornEntity)getType().create(this.world);
 	}
 	
 	/**

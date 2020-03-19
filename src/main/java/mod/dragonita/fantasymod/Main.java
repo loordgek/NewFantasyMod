@@ -42,7 +42,7 @@ public final class Main
 	public static final String MODID = "fantasymod";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 	public static final ResourceLocation DIMENSION_TYPE = new ResourceLocation(Main.MODID, "rainbow_dimension");
-	private static final int ID = 505156459;
+	private static int ID = 505156459;
 	
 	public Main()
 	{

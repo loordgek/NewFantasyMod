@@ -15,38 +15,18 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.IndexedMessageCodec;
 
 public class PanicMessage{
-	private final int data;
-	private final NetworkInstance instance;
-	private final IndexedMessageCodec indexedCodec;
+	private static int data;
 	
-	public PanicMessage(PacketBuffer buf, NetworkInstance instance){
-		this.data = buf.readInt();
-		this.instance = instance;
-		this.indexedCodec = new IndexedMessageCodec(instance);
+	public PanicMessage(PacketBuffer buf){
+		PanicMessage.data = buf.readInt();
 	}
 	
-	public PanicMessage(int data, NetworkInstance instance) {
-		this.data = data;
-		this.instance = instance;
-		this.indexedCodec = new IndexedMessageCodec(instance);
+	public PanicMessage(int data) {
+		PanicMessage.data = data;
 	}
 	
-	
-	public <MSG> void send(PacketDistributor.PacketTarget target, MSG message) {
-		target.send(toVanillaPacket(message, target.getDirection()));
-	}
-	
-	private <MSG> IPacket<?> toVanillaPacket(MSG message, NetworkDirection direction) {
-		return direction.buildPacket(toBuffer(message), instance.getChannelName()).getThis();
-	}
-
-	private <MSG> Pair<PacketBuffer,Integer> toBuffer(MSG msg) {
-		final PacketBuffer bufIn = new PacketBuffer(Unpooled.buffer());
-		int index = this.encodeMessage(msg ,bufIn);
-		return Pair.of(bufIn, index);
-	}
-	
-	public void handle(PanicMessage message ,Supplier<NetworkEvent.Context> context) {
+	public static <MSG> void handle(MSG msg, Supplier<NetworkEvent.Context> context) {
+		PanicMessage message;
 		context.get().enqueueWork(() ->  {
 			@SuppressWarnings("unused")
 			ServerPlayerEntity sender = context.get().getSender();
@@ -54,12 +34,8 @@ public class PanicMessage{
 		context.get().setPacketHandled(true);
 	}
 	
-	public void encode(PacketBuffer buf) {
+	public static <MSG> void encode(MSG message ,PacketBuffer buf) {
 		buf.writeInt(data);
-	}
-	
-	public <MSG> int encodeMessage(MSG message, final PacketBuffer target) {
-		return this.indexedCodec.build(message, target);
 	}
 	
 }

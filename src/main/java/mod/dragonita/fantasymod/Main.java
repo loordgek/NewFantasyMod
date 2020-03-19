@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import mod.dragonita.fantasymod.customthings.ModidPacketHandler;
+import mod.dragonita.fantasymod.customthings.PacketHandler;
+import mod.dragonita.fantasymod.customthings.PanicMessage;
 import mod.dragonita.fantasymod.init.ModBlocks;
 import mod.dragonita.fantasymod.init.ModDimensions;
 import mod.dragonita.fantasymod.init.ModEntityTypes;
@@ -41,7 +42,7 @@ public final class Main
 	public static final String MODID = "fantasymod";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 	public static final ResourceLocation DIMENSION_TYPE = new ResourceLocation(Main.MODID, "rainbow_dimension");
-
+	private static final int ID = 505156459;
 	
 	public Main()
 	{
@@ -70,9 +71,9 @@ public final class Main
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
-	public void setup(final FMLCommonSetupEvent event)
-	{
-		ModidPacketHandler.INSTANCE.registerMessage(505156459, ModidPacketHandler.class, ModidPacketHandler::encode, ModidPacketHandler::new, ModidPacketHandler::handle);
+	public void setup(final FMLCommonSetupEvent event) {
+		
+		PacketHandler.INSTANCE.registerMessage(ID++, PanicMessage.class, PanicMessage::encode, PanicMessage::new, PanicMessage::handle);
 		DeferredWorkQueue.runLater(new Runnable() {
 			@Override
 			public void run() {

@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import mod.dragonita.fantasymod.entities.UnicornEntity;
 import mod.dragonita.fantasymod.util.PCEntityModel;
 import mod.dragonita.fantasymod.util.PCRenderModel;
-import net.minecraft.entity.ai.goal.PanicGoal;
 
 /**
  * ModelUnicornTabula - DragonITA
@@ -305,7 +304,7 @@ public class ModelUnicorn<T extends UnicornEntity> extends PCEntityModel<T> {
     		swing(FrontRightLeg2, 0.1F, -0.5F*globalDegree, true, 0.4F, 0.0F, limbSwing, limbSwingAmount);
     		
     }else */if(entity.prevPosX != entity.getPosX() || entity.prevPosY != entity.getPosY() || entity.prevPosZ != entity.getPosZ()){
-				if(entity.CompareGoal(PanicGoal.class)) {
+				if(entity.getDataManager().get(UnicornEntity.PANIC)) {
 	    			loadDefaultPose();
 					
 		    		//Body

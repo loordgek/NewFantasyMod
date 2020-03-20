@@ -7,16 +7,21 @@ import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.network.IPacket;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class UnicornEntity extends HorseEntity{
+	public static DataParameter<Boolean> PANIC = EntityDataManager.createKey(UnicornEntity.class, DataSerializers.BOOLEAN);
 	//private static Logger LOGGER = Main.LOGGER;
 	
 	public UnicornEntity(final EntityType<? extends UnicornEntity> entityType, final World world) {
 		super(entityType, world);
+		dataManager.register(PANIC, false);
 	}
 
 	@Override
@@ -30,17 +35,21 @@ public class UnicornEntity extends HorseEntity{
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(baseHealth * 1.5D);
 	}
 	
-	/*
-	 * This Function return true if the running Goal was the same as in the parameters
-	 * 
-	 * @param The Class of the Goal we want to compare
-	 * @return true if it was the same, else false
-	 * @see The goals
-	 */
-	public boolean CompareGoal(Class<PanicGoal> TargetGoal) {
-		return this.goalSelector.getRunningGoals().anyMatch(goal -> goal.getGoal().getClass() == TargetGoal);
+
+	public boolean isPanic() {
+		return this.goalSelector.getRunningGoals().anyMatch(goal -> goal.getGoal().getClass() == PanicGoal.class);
 	}
-	
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (!world.isRemote) {
+			if (isPanic() && !dataManager.get(PANIC)) {
+				dataManager.set(PANIC, true);
+			} else dataManager.set(PANIC, false);
+		}
+	}
+
 	/**
 	 * Creates a child new entity from the parent entity.
 	 * Can be used to set additional on the child entity based on the parent.
